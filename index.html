@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shisha — Dev Portfolio</title>
-  <link rel="stylesheet" href="css/style.css"/>
+  <title>Shisha — Portfolio</title>
+  <!-- ================================================
+       FUENTES: DM Sans (cuerpo) + Playfair Display (display)
+  ================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <!-- Iconos (Lucide via CDN) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -13,451 +21,1376 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- ===================== NAVBAR ===================== -->
-  <nav>
-    <div class="nav-logo">
-      &lt;Shisha /&gt;
-    </div>
-
+  <nav id="mainNav">
+    <div class="nav-logo">&lt;Shisha /&gt;</div>
     <ul class="nav-links">
-      <li><a href="#sobre-mi">Sobre mí</a></li>
-      <li><a href="#habilidades">Habilidades</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#" onclick="showSection('home')">Inicio</a></li>
+      <li><a href="#" onclick="showSection('educacion-superior')">Educación</a></li>
+      <li><a href="#" onclick="showSection('habilidades-tecnicas')">Skills</a></li>
+      <li><a href="#" onclick="showSection('exp-laboral')">Experiencia</a></li>
     </ul>
+    <a href="#" class="nav-action" onclick="showSection('contacto')">
+      Contacto ↗
+    </a>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero" id="sobre-mi">
-    <div class="container">
-      <div class="hero-inner">
+  <!-- ===================== APP GRID ===================== -->
+  <div id="app">
 
-        <!-- IZQUIERDA: Ingeniería de Sistemas -->
-        <div class="img-left fade-in-up delay-1">
-          <img src="img/images_ingsistem.jpg" alt="Ingeniería de Sistemas" />
-          <span class="img-label">Ing. de Sistemas</span>
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside>
+
+      <!-- Perfil rápido -->
+      <div class="sidebar-perfil">
+        <div class="sidebar-perfil-img">
+          <!-- ⚠️ IMAGEN ORIGINAL — no modificar src -->
+          <img src="img/perfil.jpeg" alt="Cesar Shisha"/>
         </div>
+        <!-- Edita tu nombre y rol aquí -->
+        <div class="sidebar-name">Cesar Shisha</div>
+        <div class="sidebar-role">Full Stack Developer</div>
+      </div>
 
-        <!-- CENTRO: Contenido + perfil encima -->
-        <div class="hero-content">
+      <!-- BLOQUE 1: Identidad -->
+      <div class="nav-block">
+        <div class="nav-block-title">Identidad</div>
+        <button class="nav-btn active" onclick="showSection('home')" id="btn-home">
+          <span class="btn-num">01</span>
+          <i data-lucide="user" width="15" height="15"></i> ¿Quién soy?
+        </button>
+        <button class="nav-btn" onclick="showSection('contacto')" id="btn-contacto">
+          <span class="btn-num">02</span>
+          <i data-lucide="mail" width="15" height="15"></i> Contacto
+        </button>
+        <button class="nav-btn" onclick="showSection('filosofia')" id="btn-filosofia">
+          <span class="btn-num">03</span>
+          <i data-lucide="quote" width="15" height="15"></i> Mi Filosofía
+        </button>
+        <button class="nav-btn" onclick="showSection('faq')" id="btn-faq">
+          <span class="btn-num">04</span>
+          <i data-lucide="help-circle" width="15" height="15"></i> FAQ
+        </button>
+      </div>
 
-          <!-- Foto de perfil ARRIBA de la descripción -->
-          <div class="perfil-wrapper fade-in-up delay-2">
-            <img src="img/perfil.jpeg" alt="Foto de perfil de Cesar Shisha" />
+      <!-- BLOQUE 2: Educación -->
+      <div class="nav-block">
+        <div class="nav-block-title">Educación</div>
+        <button class="nav-btn" onclick="showSection('edu-basica')" id="btn-edu-basica">
+          <span class="btn-num">05</span>
+          <i data-lucide="book-open" width="15" height="15"></i> Ed. Básica
+        </button>
+        <button class="nav-btn" onclick="showSection('educacion-superior')" id="btn-educacion-superior">
+          <span class="btn-num">06</span>
+          <i data-lucide="graduation-cap" width="15" height="15"></i> Ed. Superior
+        </button>
+        <button class="nav-btn" onclick="showSection('certificaciones')" id="btn-certificaciones">
+          <span class="btn-num">07</span>
+          <i data-lucide="award" width="15" height="15"></i> Certificaciones
+        </button>
+        <button class="nav-btn" onclick="showSection('idiomas')" id="btn-idiomas">
+          <span class="btn-num">08</span>
+          <i data-lucide="languages" width="15" height="15"></i> Idiomas
+        </button>
+      </div>
+
+      <!-- BLOQUE 3: Entorno -->
+      <div class="nav-block">
+        <div class="nav-block-title">Entorno</div>
+        <button class="nav-btn" onclick="showSection('familia')" id="btn-familia">
+          <span class="btn-num">09</span>
+          <i data-lucide="heart" width="15" height="15"></i> Mi Familia
+        </button>
+        <button class="nav-btn" onclick="showSection('amigos')" id="btn-amigos">
+          <span class="btn-num">10</span>
+          <i data-lucide="users" width="15" height="15"></i> Amigos
+        </button>
+        <button class="nav-btn" onclick="showSection('mascotas')" id="btn-mascotas">
+          <span class="btn-num">11</span>
+          <i data-lucide="paw-print" width="15" height="15"></i> Mascotas
+        </button>
+        <button class="nav-btn" onclick="showSection('mentores')" id="btn-mentores">
+          <span class="btn-num">12</span>
+          <i data-lucide="star" width="15" height="15"></i> Mentores
+        </button>
+      </div>
+
+      <!-- BLOQUE 4: Trayectoria -->
+      <div class="nav-block">
+        <div class="nav-block-title">Trayectoria</div>
+        <button class="nav-btn" onclick="showSection('exp-laboral')" id="btn-exp-laboral">
+          <span class="btn-num">13</span>
+          <i data-lucide="briefcase" width="15" height="15"></i> Experiencia
+        </button>
+        <button class="nav-btn" onclick="showSection('proyectos')" id="btn-proyectos">
+          <span class="btn-num">14</span>
+          <i data-lucide="layout-grid" width="15" height="15"></i> Proyectos
+        </button>
+        <button class="nav-btn" onclick="showSection('logros')" id="btn-logros">
+          <span class="btn-num">15</span>
+          <i data-lucide="trophy" width="15" height="15"></i> Logros
+        </button>
+        <button class="nav-btn" onclick="showSection('recomendaciones')" id="btn-recomendaciones">
+          <span class="btn-num">16</span>
+          <i data-lucide="message-circle" width="15" height="15"></i> Recomendaciones
+        </button>
+      </div>
+
+      <!-- BLOQUE 5: Habilidades -->
+      <div class="nav-block">
+        <div class="nav-block-title">Habilidades</div>
+        <button class="nav-btn" onclick="showSection('habilidades-tecnicas')" id="btn-habilidades-tecnicas">
+          <span class="btn-num">17</span>
+          <i data-lucide="cpu" width="15" height="15"></i> Hard Skills
+        </button>
+        <button class="nav-btn" onclick="showSection('soft-skills')" id="btn-soft-skills">
+          <span class="btn-num">18</span>
+          <i data-lucide="sparkles" width="15" height="15"></i> Soft Skills
+        </button>
+        <button class="nav-btn" onclick="showSection('fortalezas')" id="btn-fortalezas">
+          <span class="btn-num">19</span>
+          <i data-lucide="shield" width="15" height="15"></i> Fortalezas
+        </button>
+        <button class="nav-btn" onclick="showSection('herramientas')" id="btn-herramientas">
+          <span class="btn-num">20</span>
+          <i data-lucide="wrench" width="15" height="15"></i> Herramientas
+        </button>
+      </div>
+
+      <!-- BLOQUE 6: Estilo de vida -->
+      <div class="nav-block">
+        <div class="nav-block-title">Estilo de Vida</div>
+        <button class="nav-btn" onclick="showSection('deportes')" id="btn-deportes">
+          <span class="btn-num">21</span>
+          <i data-lucide="dumbbell" width="15" height="15"></i> Deportes
+        </button>
+        <button class="nav-btn" onclick="showSection('hobbies')" id="btn-hobbies">
+          <span class="btn-num">22</span>
+          <i data-lucide="gamepad-2" width="15" height="15"></i> Hobbies
+        </button>
+        <button class="nav-btn" onclick="showSection('viajes')" id="btn-viajes">
+          <span class="btn-num">23</span>
+          <i data-lucide="map-pin" width="15" height="15"></i> Viajes
+        </button>
+        <button class="nav-btn" onclick="showSection('playlist')" id="btn-playlist">
+          <span class="btn-num">24</span>
+          <i data-lucide="music" width="15" height="15"></i> Playlist / Inspiración
+        </button>
+      </div>
+
+      <!-- BLOQUE 7: Futuro -->
+      <div class="nav-block">
+        <div class="nav-block-title">Futuro</div>
+        <button class="nav-btn" onclick="showSection('proyecciones')" id="btn-proyecciones">
+          <span class="btn-num">25</span>
+          <i data-lucide="rocket" width="15" height="15"></i> Proyecciones
+        </button>
+        <button class="nav-btn" onclick="showSection('empresas')" id="btn-empresas">
+          <span class="btn-num">26</span>
+          <i data-lucide="building-2" width="15" height="15"></i> Empresas de Ensueño
+        </button>
+        <button class="nav-btn" onclick="showSection('voluntariado')" id="btn-voluntariado">
+          <span class="btn-num">27</span>
+          <i data-lucide="hand-heart" width="15" height="15"></i> Voluntariado
+        </button>
+        <button class="nav-btn" onclick="showSection('emprendimientos')" id="btn-emprendimientos">
+          <span class="btn-num">28</span>
+          <i data-lucide="lightbulb" width="15" height="15"></i> Emprendimientos
+        </button>
+      </div>
+
+      <!-- BLOQUE 8: Recursos -->
+      <div class="nav-block">
+        <div class="nav-block-title">Recursos</div>
+        <button class="nav-btn" onclick="showSection('descargar-cv')" id="btn-descargar-cv">
+          <span class="btn-num">29</span>
+          <i data-lucide="download" width="15" height="15"></i> Descargar CV
+        </button>
+        <button class="nav-btn" onclick="showSection('libro-visitas')" id="btn-libro-visitas">
+          <span class="btn-num">30</span>
+          <i data-lucide="notebook-pen" width="15" height="15"></i> Libro de Visitas
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
+    <main id="main-content">
+
+      <!-- ==================================================
+           SECCIÓN 1: HOME / QUIÉN SOY (visible por defecto)
+      ================================================== -->
+      <section class="spa-section active" id="home">
+        <div class="hero-inner">
+
+          <!-- IZQUIERDA — imagen Ingeniería de Sistemas (src original conservado) -->
+          <div class="img-left fade-in-up delay-1">
+            <img src="img/images_ingsistem.jpg" alt="Ingeniería de Sistemas" />
+            <span class="img-label">Ing. de Sistemas</span>
           </div>
 
-          <div class="hero-tag fade-in-up delay-3">
-            Full Stack Developer
+          <!-- CENTRO -->
+          <div class="hero-content">
+            <div class="perfil-wrapper fade-in-up delay-2">
+              <!-- ⚠️ Foto de perfil original — no modificar -->
+              <img src="img/perfil.jpeg" alt="Foto de perfil de Cesar Shisha"/>
+            </div>
+            <!-- Edita el badge aquí -->
+            <div class="hero-tag fade-in-up delay-3">Full Stack Developer</div>
+            <!-- Edita el título aquí -->
+            <h1 class="fade-in-up delay-4">Hola, soy <span>Shisha</span></h1>
+            <!-- Edita las descripciones aquí -->
+            <p class="hero-desc lead fade-in-up delay-5">
+              Bienvenido al curso de Administración de Servidores.
+            </p>
+            <p class="hero-desc fade-in-up delay-5">
+              Mi nombre es Cesar, más conocido como Shisha, y esta es mi página web.
+            </p>
+            <p class="hero-desc fade-in-up delay-6">
+              Desarrollador apasionado por construir soluciones robustas desde el
+              frontend hasta la infraestructura. Del navegador al servidor,
+              de la base de datos al contenedor.
+            </p>
+            <div class="hero-btns fade-in-up delay-7">
+              <button class="cta-btn" onclick="showSection('proyectos')">Ver proyectos →</button>
+              <button class="outline-btn" onclick="showSection('contacto')">Contactarme</button>
+            </div>
           </div>
 
-          <h1 class="fade-in-up delay-4">
-            Hola, soy <span>Shisha</span>
-          </h1>
+          <!-- DERECHA — imagen UNHEVAL (src original conservado) -->
+          <div class="img-right fade-in-up delay-1">
+            <img src="img/images-unheval.jpg" alt="Universidad UNHEVAL"/>
+            <span class="img-label">UNHEVAL</span>
+          </div>
 
-          <p class="hero-desc fade-in-up delay-5">
-            Bienvenido al curso de Administración de Servidores.
+        </div>
+
+        <!-- Stats rápidas -->
+        <div style="margin-top:3rem;">
+          <div class="stat-row" style="justify-content:center;">
+            <!-- Edita los números y etiquetas aquí -->
+            <div class="stat-pill"><strong>3+</strong><span>Años exp.</span></div>
+            <div class="stat-pill"><strong>15+</strong><span>Proyectos</span></div>
+            <div class="stat-pill"><strong>10+</strong><span>Tecnologías</span></div>
+            <div class="stat-pill"><strong>5+</strong><span>Certificaciones</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 2: CONTACTO
+      ================================================== -->
+      <section class="spa-section" id="contacto">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="mail" width="14" height="14"></i> Bloque 1</div>
+          <h2 class="sec-title">Datos de <span>Contacto</span></h2>
+          <p class="sec-sub">¿Quieres colaborar o simplemente saludar? Aquí me encuentras.</p>
+        </div>
+
+        <div class="two-col">
+          <!-- Formulario de contacto -->
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1.25rem;font-size:1.05rem;">Envíame un mensaje</h3>
+            <div class="form-group">
+              <label class="form-label">Nombre</label>
+              <!-- Edita placeholder según necesites -->
+              <input class="form-input" type="text" placeholder="Tu nombre completo"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Correo</label>
+              <input class="form-input" type="email" placeholder="tu@email.com"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mensaje</label>
+              <textarea class="form-textarea" placeholder="Escribe tu mensaje..."></textarea>
+            </div>
+            <button class="cta-btn" onclick="alert('¡Mensaje enviado! (simulado)')">Enviar mensaje →</button>
+          </div>
+
+          <!-- Info de contacto directo -->
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <h3 style="font-weight:700;margin-bottom:.5rem;font-size:1.05rem;">Encuéntrame en</h3>
+            <!-- Edita cada dato de contacto aquí -->
+            <div class="card">
+              <div class="card-icon"><i data-lucide="mail" width="18" height="18"></i></div>
+              <div class="card-title">Correo electrónico</div>
+              <!-- Edita el correo -->
+              <div class="card-sub">cesar.shisha@email.com</div>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i data-lucide="phone" width="18" height="18"></i></div>
+              <div class="card-title">Teléfono / WhatsApp</div>
+              <!-- Edita el teléfono -->
+              <div class="card-sub">+51 900 000 000</div>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i data-lucide="linkedin" width="18" height="18"></i></div>
+              <div class="card-title">LinkedIn</div>
+              <!-- Edita el perfil de LinkedIn -->
+              <div class="card-sub">linkedin.com/in/shisha</div>
+            </div>
+            <div class="card">
+              <div class="card-icon"><i data-lucide="github" width="18" height="18"></i></div>
+              <div class="card-title">GitHub</div>
+              <!-- Edita el GitHub -->
+              <div class="card-sub">github.com/shisha</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 3: FILOSOFÍA
+      ================================================== -->
+      <section class="spa-section" id="filosofia">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="quote" width="14" height="14"></i> Bloque 1</div>
+          <h2 class="sec-title">Mi <span>Filosofía de Vida</span></h2>
+          <p class="sec-sub">Principios, lemas y frases que guían mi camino.</p>
+        </div>
+        <!-- Edita cada cita aquí (dentro de blockquote) -->
+        <blockquote>
+          "El único modo de hacer un gran trabajo es amar lo que haces."
+          <cite>— Steve Jobs</cite>
+        </blockquote>
+        <blockquote>
+          "La excelencia no es un acto, sino un hábito."
+          <cite>— Aristóteles</cite>
+        </blockquote>
+        <blockquote>
+          "Primero resuelve el problema. Luego escribe el código."
+          <cite>— John Johnson</cite>
+        </blockquote>
+        <blockquote>
+          "No cuentes los días, haz que los días cuenten."
+          <cite>— Muhammad Ali</cite>
+        </blockquote>
+
+        <div class="divider"></div>
+        <h3 style="font-weight:700;margin-bottom:1rem;">Mis principios</h3>
+        <div class="tags">
+          <!-- Edita los principios personales aquí -->
+          <span class="tag">Integridad</span>
+          <span class="tag green">Aprendizaje continuo</span>
+          <span class="tag pink">Empatía</span>
+          <span class="tag">Responsabilidad</span>
+          <span class="tag green">Innovación</span>
+          <span class="tag pink">Colaboración</span>
+          <span class="tag">Resiliencia</span>
+          <span class="tag green">Disciplina</span>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 4: FAQ
+      ================================================== -->
+      <section class="spa-section" id="faq">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="help-circle" width="14" height="14"></i> Bloque 1</div>
+          <h2 class="sec-title">Preguntas <span>Frecuentes</span></h2>
+          <p class="sec-sub">Respuestas rápidas para reclutadores y curiosos.</p>
+        </div>
+        <!-- Edita preguntas y respuestas en los data-answer -->
+        <div id="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿En qué te especializas? <i data-lucide="chevron-down" width="18" height="18"></i>
+            </button>
+            <div class="faq-answer">
+              Me especializo en desarrollo Full Stack con énfasis en backend y administración de servidores. Trabajo con tecnologías como Node.js, Python, bases de datos relacionales y no relacionales, contenedores Docker y despliegue en la nube.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Estás disponible para trabajo freelance? <i data-lucide="chevron-down" width="18" height="18"></i>
+            </button>
+            <div class="faq-answer">
+              Sí, estoy abierto a proyectos freelance de alcance definido. Prefiero proyectos relacionados con infraestructura, APIs o aplicaciones web. Contáctame para evaluar la disponibilidad.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Cuánto tiempo tienes de experiencia? <i data-lucide="chevron-down" width="18" height="18"></i>
+            </button>
+            <div class="faq-answer">
+              Tengo más de 3 años de experiencia acumulada entre proyectos universitarios, prácticas preprofesionales y proyectos personales. Actualmente en formación continua en la UNHEVAL.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Hablas inglés? <i data-lucide="chevron-down" width="18" height="18"></i>
+            </button>
+            <div class="faq-answer">
+              Tengo un nivel intermedio-avanzado de inglés técnico, lo que me permite leer documentación, participar en reuniones y colaborar en equipos internacionales sin inconvenientes.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Cuál es tu metodología de trabajo? <i data-lucide="chevron-down" width="18" height="18"></i>
+            </button>
+            <div class="faq-answer">
+              Trabajo con metodologías ágiles (Scrum/Kanban), priorizo la comunicación clara, la documentación y la entrega de valor incremental. Me adapto rápidamente a los procesos del equipo.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 5: EDUCACIÓN BÁSICA
+      ================================================== -->
+      <section class="spa-section" id="edu-basica">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="book-open" width="14" height="14"></i> Bloque 2</div>
+          <h2 class="sec-title">Educación <span>Básica</span></h2>
+          <p class="sec-sub">Mi recorrido desde el inicio.</p>
+        </div>
+        <div class="timeline">
+          <!-- Edita cada etapa educativa aquí -->
+          <div class="tl-item">
+            <div class="tl-period">Inicial — Edita el año</div>
+            <div class="tl-title">Nombre del jardín de infancia</div>
+            <div class="tl-place">Ciudad, País</div>
+            <div class="tl-desc">Primeras experiencias de aprendizaje y socialización.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-period">Primaria — Edita los años</div>
+            <div class="tl-title">Nombre del colegio de primaria</div>
+            <div class="tl-place">Ciudad, País</div>
+            <div class="tl-desc">Desarrollo de habilidades básicas de lecto-escritura y matemáticas. Participé en concursos académicos.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-period">Secundaria — Edita los años</div>
+            <div class="tl-title">Nombre del colegio de secundaria</div>
+            <div class="tl-place">Ciudad, País</div>
+            <div class="tl-desc">Mención en Ciencias. Primer acercamiento a la programación y el pensamiento lógico. Delegado de aula.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 6: EDUCACIÓN SUPERIOR
+      ================================================== -->
+      <section class="spa-section" id="educacion-superior">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="graduation-cap" width="14" height="14"></i> Bloque 2</div>
+          <h2 class="sec-title">Educación <span>Superior</span></h2>
+          <p class="sec-sub">Mi formación universitaria en detalle.</p>
+        </div>
+        <div class="card" style="max-width:680px;padding:2rem;">
+          <!-- ⚠️ Imagen UNHEVAL original conservada -->
+          <img src="img/images-unheval.jpg" alt="UNHEVAL" style="width:100%;height:180px;object-fit:cover;border-radius:var(--r-md);margin-bottom:1.25rem;"/>
+          <!-- Edita los datos universitarios aquí -->
+          <div class="tl-period">2020 — Actualidad</div>
+          <h3 style="font-size:1.2rem;font-weight:800;margin:.3rem 0 .2rem;">Ingeniería de Sistemas</h3>
+          <div class="tl-place">Universidad Nacional Hermilio Valdizán — UNHEVAL, Huánuco, Perú</div>
+          <p style="font-size:.9rem;color:var(--muted);margin-top:.75rem;line-height:1.65;">
+            Carrera enfocada en el diseño, desarrollo e implementación de sistemas de información y redes.
+            Estado actual: <strong style="color:var(--accent-3);">En curso</strong> — Ciclo X.
           </p>
+          <div class="tags" style="margin-top:1rem;">
+            <span class="tag green">Sistemas Operativos</span>
+            <span class="tag green">Redes y Comunicaciones</span>
+            <span class="tag green">Bases de Datos</span>
+            <span class="tag green">Ing. de Software</span>
+            <span class="tag green">Servidores</span>
+          </div>
+          <div class="stat-row" style="margin-top:1.5rem;">
+            <div class="stat-pill"><strong>9.5</strong><span>Promedio</span></div>
+            <div class="stat-pill"><strong>X</strong><span>Ciclo actual</span></div>
+            <div class="stat-pill"><strong>3</strong><span>Proyectos acad.</span></div>
+          </div>
+        </div>
+      </section>
 
-          <p class="hero-desc fade-in-up delay-5">
-            Mi nombre es Cesar, más conocido como Shisha,
-            y esta es mi página web.
+      <!-- ==================================================
+           SECCIÓN 7: CERTIFICACIONES
+      ================================================== -->
+      <section class="spa-section" id="certificaciones">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="award" width="14" height="14"></i> Bloque 2</div>
+          <h2 class="sec-title">Cursos y <span>Certificaciones</span></h2>
+          <p class="sec-sub">Diplomas, talleres y seminarios que complementan mi formación.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Duplica estas tarjetas para agregar más certificaciones -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del certificado 1</div>
+            <div class="card-sub">Institución — Edita el año</div>
+            <div class="tags"><span class="tag">Online</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del certificado 2</div>
+            <div class="card-sub">Institución — Edita el año</div>
+            <div class="tags"><span class="tag green">Presencial</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del certificado 3</div>
+            <div class="card-sub">Institución — Edita el año</div>
+            <div class="tags"><span class="tag pink">Taller</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del certificado 4</div>
+            <div class="card-sub">Institución — Edita el año</div>
+            <div class="tags"><span class="tag">Seminario</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 8: IDIOMAS
+      ================================================== -->
+      <section class="spa-section" id="idiomas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="languages" width="14" height="14"></i> Bloque 2</div>
+          <h2 class="sec-title"><span>Idiomas</span></h2>
+          <p class="sec-sub">Nivel de dominio de los idiomas que manejo.</p>
+        </div>
+        <div style="max-width:520px;">
+          <!-- Edita el porcentaje en data-pct (0-100) y el label -->
+          <div class="skill-bar">
+            <div class="skill-bar-top">
+              <span class="skill-bar-label">Español</span>
+              <span class="skill-bar-pct">100%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="100"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top">
+              <span class="skill-bar-label">Inglés</span>
+              <span class="skill-bar-pct">65%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="65"></div></div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-top">
+              <span class="skill-bar-label">Portugués</span>
+              <span class="skill-bar-pct">20%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="20"></div></div>
+          </div>
+          <!-- Agrega más idiomas duplicando el bloque .skill-bar -->
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 9: FAMILIA
+      ================================================== -->
+      <section class="spa-section" id="familia">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="heart" width="14" height="14"></i> Bloque 3</div>
+          <h2 class="sec-title">Mi <span>Familia</span></h2>
+          <p class="sec-sub">Las personas que son mi motor.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Duplica las tarjetas y edita nombre/rol/descripción -->
+          <div class="card" style="text-align:center;">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;color:#fff;">
+              <img src="img/mama_mano_tarapoto.jpeg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">MARIA</div>
+            <div class="card-sub">Madre</div>
+            <div class="card-sub" style="margin-top:.5rem;">La mejor persona de toas, la unica que esta siempre para mi a cada momento</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-2),var(--accent-3));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;color:#fff;">
+              <img src="img/pp_fot.jpeg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">RAUL</div>
+            <div class="card-sub">Padre</div>
+            <div class="card-sub" style="margin-top:.5rem;">Escribe algo especial sobre esta persona.</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-3),var(--accent));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;color:#fff;">
+              <img src="img/liberatita.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">LIBERATA</div>
+            <div class="card-sub">Abuela materna</div>
+            <div class="card-sub" style="margin-top:.5rem;">Escribe algo especial sobre esta persona.</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-3),var(--accent));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.4rem;color:#fff;">
+              <img src="img/eliseo.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">ELISEO</div>
+            <div class="card-sub">Abuelo materno</div>
+            <div class="card-sub" style="margin-top:.5rem;">Escribe algo especial sobre esta persona.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 10: AMIGOS
+      ================================================== -->
+      <section class="spa-section" id="amigos">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="users" width="14" height="14"></i> Bloque 3</div>
+          <h2 class="sec-title">Mis <span>Amigos</span></h2>
+          <p class="sec-sub">Mi círculo social cercano y las anécdotas que nos unen.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre, apodo y anécdota de cada amigo -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="user" width="18" height="18"></i>
+              <img src="img/josue.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">JOSUE</div>
+            <div class="card-sub">"CAHORRITA" — Es una buena persona, muy leal.</div>
+            <div class="tags"><span class="tag pink">Universidad</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="user" width="18" height="18"></i>
+              <img src="img/yerson.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">YERSON</div>
+            <div class="card-sub">"PRECIOSA" — Siempre está dispuesto a ayudar y tiene un corazón de oro.</div>
+            <div class="tags"><span class="tag">Universidad</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="user" width="18" height="18"></i>
+              <img src="img/gorod.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">ALDAIR</div>
+            <div class="card-sub">"GORDO 8 RAJAS" — Es un amigo fiel y siempre está ahí cuando se necesita, es de Lima.</div>
+            <div class="tags"><span class="tag green">Colegio</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="user" width="18" height="18"></i>
+              <img src="img/lameliza.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">DIEGO</div>
+            <div class="card-sub">"LA MELIZA" — Es un amigo leal, y chistoso y siempre está ahí cuando se necesita, es de Lima.</div>
+            <div class="tags"><span class="tag green">Colegio</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 11: MASCOTAS
+      ================================================== -->
+      <section class="spa-section" id="mascotas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="paw-print" width="14" height="14"></i> Bloque 3</div>
+          <h2 class="sec-title">Mis <span>Mascotas</span></h2>
+          <p class="sec-sub">Los peludos del hogar.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre, especie y descripción de cada mascota -->
+          <div class="card" style="text-align:center;">
+            <div style="font-size:3rem;margin-bottom:.75rem;">🐶</div>
+            <div class="card-title">Nombre de la mascota</div>
+            <div class="card-sub">Especie / Raza — Edad</div>
+            <div class="card-sub" style="margin-top:.5rem;">Algo especial sobre tu mascota.</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:3rem;margin-bottom:.75rem;">🐱</div>
+            <div class="card-title">Nombre de la mascota</div>
+            <div class="card-sub">Especie / Raza — Edad</div>
+            <div class="card-sub" style="margin-top:.5rem;">Algo especial sobre tu mascota.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 12: MENTORES
+      ================================================== -->
+      <section class="spa-section" id="mentores">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="star" width="14" height="14"></i> Bloque 3</div>
+          <h2 class="sec-title">Mentores e <span>Influencias</span></h2>
+          <p class="sec-sub">Personas que han marcado mi camino académico y profesional.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre, rol y descripción de cada mentor -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="star" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del mentor</div>
+            <div class="card-sub">Rol (ej: Docente universitario, Jefe de área)</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Lo que aprendí de esta persona y cómo influyó en mi desarrollo.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="star" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del mentor</div>
+            <div class="card-sub">Rol</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Lo que aprendí de esta persona y cómo influyó en mi desarrollo.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 13: EXPERIENCIA LABORAL
+      ================================================== -->
+      <section class="spa-section" id="exp-laboral">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="briefcase" width="14" height="14"></i> Bloque 4</div>
+          <h2 class="sec-title">Experiencia <span>Laboral</span></h2>
+          <p class="sec-sub">Mi historial profesional y las funciones desempeñadas.</p>
+        </div>
+        <div class="timeline">
+          <!-- Edita cada puesto laboral aquí -->
+          <div class="tl-item">
+            <div class="tl-period">Mes Año — Mes Año (o Actualidad)</div>
+            <div class="tl-title">Nombre del puesto</div>
+            <div class="tl-place">Nombre de la empresa — Ciudad</div>
+            <div class="tl-desc">
+              <ul style="padding-left:1.2rem;margin-top:.5rem;color:var(--muted);font-size:.88rem;line-height:1.8;">
+                <li>Función o logro principal 1</li>
+                <li>Función o logro principal 2</li>
+                <li>Función o logro principal 3</li>
+              </ul>
+            </div>
+            <div class="tags" style="margin-top:.75rem;"><span class="tag">Tecnología 1</span><span class="tag green">Tecnología 2</span></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-period">Mes Año — Mes Año</div>
+            <div class="tl-title">Nombre del puesto anterior</div>
+            <div class="tl-place">Nombre de la empresa — Ciudad</div>
+            <div class="tl-desc">
+              <ul style="padding-left:1.2rem;margin-top:.5rem;color:var(--muted);font-size:.88rem;line-height:1.8;">
+                <li>Función o logro principal 1</li>
+                <li>Función o logro principal 2</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 14: PROYECTOS
+      ================================================== -->
+      <section class="spa-section" id="proyectos">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="layout-grid" width="14" height="14"></i> Bloque 4</div>
+          <h2 class="sec-title">Proyectos <span>Destacados</span></h2>
+          <p class="sec-sub">Portafolio de trabajos y desarrollos relevantes.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre, descripción y tecnologías de cada proyecto -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="globe" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del proyecto 1</div>
+            <div class="card-sub">Breve descripción de qué hace el proyecto y cuál fue tu rol.</div>
+            <div class="tags"><span class="tag">React</span><span class="tag green">Node.js</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="server" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del proyecto 2</div>
+            <div class="card-sub">Breve descripción del proyecto y tecnologías usadas.</div>
+            <div class="tags"><span class="tag">Docker</span><span class="tag pink">Linux</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="database" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del proyecto 3</div>
+            <div class="card-sub">Breve descripción del proyecto y tecnologías usadas.</div>
+            <div class="tags"><span class="tag green">PostgreSQL</span><span class="tag">Python</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="smartphone" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del proyecto 4</div>
+            <div class="card-sub">Breve descripción del proyecto y tecnologías usadas.</div>
+            <div class="tags"><span class="tag pink">Mobile</span><span class="tag">Flutter</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 15: LOGROS
+      ================================================== -->
+      <section class="spa-section" id="logros">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="trophy" width="14" height="14"></i> Bloque 4</div>
+          <h2 class="sec-title">Logros y <span>Reconocimientos</span></h2>
+          <p class="sec-sub">Premios y felicitaciones que me enorgullecen.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita cada logro o reconocimiento -->
+          <div class="card" style="border-color:rgba(180,138,255,.25);">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">🏆</div>
+            <div class="card-title">Nombre del logro o premio</div>
+            <div class="card-sub">Institución que otorgó — Año</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Describe brevemente el mérito o la razón del reconocimiento.</p>
+          </div>
+          <div class="card">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">🎖️</div>
+            <div class="card-title">Nombre del logro o reconocimiento</div>
+            <div class="card-sub">Institución — Año</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Describe brevemente el mérito.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 16: RECOMENDACIONES
+      ================================================== -->
+      <section class="spa-section" id="recomendaciones">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="message-circle" width="14" height="14"></i> Bloque 4</div>
+          <h2 class="sec-title"><span>Recomendaciones</span></h2>
+          <p class="sec-sub">Lo que dicen quienes han trabajado conmigo.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita cada testimonio/recomendación -->
+          <div class="testimonial">
+            <p class="testimonial-text">"Escribe aquí la recomendación de un colega, docente o jefe."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">A</div>
+              <div>
+                <div class="testimonial-name">Nombre del recomendador</div>
+                <div class="testimonial-role">Cargo — Empresa</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <p class="testimonial-text">"Escribe aquí otra recomendación de un colega o docente."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--accent-2),var(--accent-3));">B</div>
+              <div>
+                <div class="testimonial-name">Nombre del recomendador</div>
+                <div class="testimonial-role">Cargo — Empresa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 17: HARD SKILLS
+      ================================================== -->
+      <section class="spa-section" id="habilidades-tecnicas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="cpu" width="14" height="14"></i> Bloque 5</div>
+          <h2 class="sec-title">Hard <span>Skills</span></h2>
+          <p class="sec-sub">Tecnologías y herramientas que domino.</p>
+        </div>
+        <!-- Edita las tecnologías aquí; duplica las filas para más categorías -->
+        <div style="display:flex;flex-direction:column;gap:2rem;">
+          <div>
+            <h3 style="font-size:.85rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;">Lenguajes</h3>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">JavaScript</span>
+              <span class="tag">TypeScript</span><span class="tag">Bash</span>
+              <span class="tag">SQL</span><span class="tag">HTML/CSS</span>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size:.85rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;">Frameworks & Librerías</h3>
+            <div class="tags">
+              <span class="tag green">Node.js</span><span class="tag green">Express</span>
+              <span class="tag green">React</span><span class="tag green">Django</span>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size:.85rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;">Infraestructura & Servidores</h3>
+            <div class="tags">
+              <span class="tag pink">Docker</span><span class="tag pink">Linux</span>
+              <span class="tag pink">Nginx</span><span class="tag pink">AWS</span>
+              <span class="tag pink">Git</span><span class="tag pink">CI/CD</span>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-size:.85rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem;">Bases de Datos</h3>
+            <div class="tags">
+              <span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+              <span class="tag">MongoDB</span><span class="tag">Redis</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 18: SOFT SKILLS
+      ================================================== -->
+      <section class="spa-section" id="soft-skills">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="sparkles" width="14" height="14"></i> Bloque 5</div>
+          <h2 class="sec-title">Soft <span>Skills</span></h2>
+          <p class="sec-sub">Habilidades interpersonales y de gestión.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita icono, título y descripción de cada soft skill -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="users" width="18" height="18"></i></div>
+            <div class="card-title">Trabajo en equipo</div>
+            <div class="card-sub">Capacidad de colaborar eficientemente, escuchar y aportar valor en entornos multidisciplinarios.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="lightbulb" width="18" height="18"></i></div>
+            <div class="card-title">Resolución de problemas</div>
+            <div class="card-sub">Pensamiento analítico para descomponer problemas complejos y encontrar soluciones creativas.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="mic" width="18" height="18"></i></div>
+            <div class="card-title">Comunicación efectiva</div>
+            <div class="card-sub">Habilidad para transmitir ideas técnicas de forma clara tanto a equipos como a clientes.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="clock" width="18" height="18"></i></div>
+            <div class="card-title">Gestión del tiempo</div>
+            <div class="card-sub">Priorización de tareas y cumplimiento de plazos en entornos de alta demanda.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="refresh-cw" width="18" height="18"></i></div>
+            <div class="card-title">Adaptabilidad</div>
+            <div class="card-sub">Rapidez para aprender nuevas tecnologías y adaptarme a cambios del entorno.</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="eye" width="18" height="18"></i></div>
+            <div class="card-title">Atención al detalle</div>
+            <div class="card-sub">Enfoque meticuloso en la calidad del código, la documentación y los entregables.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 19: FORTALEZAS Y ÁREAS DE MEJORA
+      ================================================== -->
+      <section class="spa-section" id="fortalezas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="shield" width="14" height="14"></i> Bloque 5</div>
+          <h2 class="sec-title">Fortalezas y <span>Áreas de Mejora</span></h2>
+          <p class="sec-sub">Un análisis honesto de mis puntos fuertes y metas de desarrollo.</p>
+        </div>
+        <div class="two-col">
+          <!-- Columna de Fortalezas -->
+          <div>
+            <h3 style="color:var(--accent-3);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">
+              <i data-lucide="check-circle-2" width="18" height="18"></i> Puntos Fuertes
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:.75rem;">
+              <!-- Edita cada fortaleza -->
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Aprendizaje autodidacta rápido y constante.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Sólidas bases en infraestructura y administración de servidores.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Orientación a resultados y cumplimiento de plazos.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Capacidad de trabajar bajo presión con calidad constante.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Columna de Áreas de Mejora -->
+          <div>
+            <h3 style="color:var(--accent-2);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">
+              <i data-lucide="target" width="18" height="18"></i> Metas de Desarrollo
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:.75rem;">
+              <!-- Edita cada área de mejora -->
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Mejorar el nivel de inglés conversacional.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Profundizar en arquitecturas de microservicios y cloud native.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Desarrollar habilidades de liderazgo técnico de equipos.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Contribuir más activamente a proyectos open source.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 20: HERRAMIENTAS DE PRODUCTIVIDAD
+      ================================================== -->
+      <section class="spa-section" id="herramientas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="wrench" width="14" height="14"></i> Bloque 5</div>
+          <h2 class="sec-title">Herramientas de <span>Productividad</span></h2>
+          <p class="sec-sub">Software del día a día que potencia mi flujo de trabajo.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre y descripción de cada herramienta -->
+          <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">🗒️</div>
+            <div class="card-title">Notion</div>
+            <div class="card-sub">Gestión de proyectos y notas</div>
+          </div>
+          <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">📋</div>
+            <div class="card-title">Trello</div>
+            <div class="card-sub">Tableros Kanban</div>
+          </div>
+          <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">💻</div>
+            <div class="card-title">VS Code</div>
+            <div class="card-sub">Editor de código principal</div>
+          </div>
+          <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">🐙</div>
+            <div class="card-title">GitHub</div>
+            <div class="card-sub">Control de versiones</div>
+          </div>
+          <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">📊</div>
+            <div class="card-title">Office 365</div>
+            <div class="card-sub">Suite ofimática</div>
+          </div>
+          <div class="card" style="text-align:center;padding:1.5rem 1rem;">
+            <div style="font-size:2.5rem;margin-bottom:.5rem;">🐳</div>
+            <div class="card-title">Docker Desktop</div>
+            <div class="card-sub">Contenedores locales</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 21: DEPORTES Y BIENESTAR
+      ================================================== -->
+      <section class="spa-section" id="deportes">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="dumbbell" width="14" height="14"></i> Bloque 6</div>
+          <h2 class="sec-title">Deportes y <span>Bienestar</span></h2>
+          <p class="sec-sub">Mi rutina de salud y las disciplinas que practico.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita cada deporte o actividad de bienestar -->
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:.75rem;">🏃</div>
+            <div class="card-title">Running / Trotar</div>
+            <div class="card-sub">Frecuencia, distancia o comentario personal sobre esta actividad.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:.75rem;">🏋️</div>
+            <div class="card-title">Gimnasio</div>
+            <div class="card-sub">Frecuencia y objetivo (fuerza, resistencia, etc.).</div>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:.75rem;">⚽</div>
+            <div class="card-title">Fútbol</div>
+            <div class="card-sub">Equipo, posición o frecuencia de práctica.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 22: HOBBIES
+      ================================================== -->
+      <section class="spa-section" id="hobbies">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="gamepad-2" width="14" height="14"></i> Bloque 6</div>
+          <h2 class="sec-title">Pasatiempos y <span>Hobbies</span></h2>
+          <p class="sec-sub">Lo que hago cuando no estoy programando.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita cada hobbie -->
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">📚</div>
+            <div class="card-title">Lectura</div>
+            <div class="card-sub">Géneros o autores favoritos.</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">🎵</div>
+            <div class="card-title">Música</div>
+            <div class="card-sub">Géneros que escuchas o si tocas algún instrumento.</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">🎮</div>
+            <div class="card-title">Videojuegos</div>
+            <div class="card-sub">Géneros o juegos favoritos.</div>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">👨‍🍳</div>
+            <div class="card-title">Cocina</div>
+            <div class="card-sub">Platos o estilos culinarios que disfrutas.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 23: VIAJES
+      ================================================== -->
+      <section class="spa-section" id="viajes">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="map-pin" width="14" height="14"></i> Bloque 6</div>
+          <h2 class="sec-title">Viajes y <span>Lugares Visitados</span></h2>
+          <p class="sec-sub">Ciudades y países que han ampliado mi perspectiva.</p>
+        </div>
+        <div class="timeline">
+          <!-- Edita cada ciudad o país visitado -->
+          <div class="tl-item">
+            <div class="tl-period">Edita el año</div>
+            <div class="tl-title">Ciudad o País visitado</div>
+            <div class="tl-desc">Describe la experiencia, motivo del viaje o qué te dejó ese lugar.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-period">Edita el año</div>
+            <div class="tl-title">Ciudad o País visitado</div>
+            <div class="tl-desc">Describe la experiencia.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 24: PLAYLIST / INSPIRACIÓN
+      ================================================== -->
+      <section class="spa-section" id="playlist">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="music" width="14" height="14"></i> Bloque 6</div>
+          <h2 class="sec-title">Playlist & <span>Inspiración</span></h2>
+          <p class="sec-sub">Canciones, libros y películas que me definen.</p>
+        </div>
+        <div class="two-col">
+          <!-- Canciones favoritas -->
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">
+              <i data-lucide="music" width="16" height="16" style="color:var(--accent);"></i> Canciones
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:.6rem;">
+              <!-- Edita título y artista de cada canción -->
+              <div class="card" style="padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;">
+                <span style="font-size:1.5rem;">🎵</span>
+                <div><div style="font-weight:600;font-size:.9rem;">Título de la canción</div><div style="font-size:.8rem;color:var(--muted);">Artista</div></div>
+              </div>
+              <div class="card" style="padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;">
+                <span style="font-size:1.5rem;">🎵</span>
+                <div><div style="font-weight:600;font-size:.9rem;">Título de la canción</div><div style="font-size:.8rem;color:var(--muted);">Artista</div></div>
+              </div>
+              <div class="card" style="padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;">
+                <span style="font-size:1.5rem;">🎵</span>
+                <div><div style="font-weight:600;font-size:.9rem;">Título de la canción</div><div style="font-size:.8rem;color:var(--muted);">Artista</div></div>
+              </div>
+            </div>
+          </div>
+          <!-- Libros y películas -->
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">
+              <i data-lucide="book" width="16" height="16" style="color:var(--accent-2);"></i> Libros & Películas
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:.6rem;">
+              <!-- Edita título de cada libro o película -->
+              <div class="card" style="padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;">
+                <span style="font-size:1.5rem;">📗</span>
+                <div><div style="font-weight:600;font-size:.9rem;">Título del libro</div><div style="font-size:.8rem;color:var(--muted);">Autor</div></div>
+              </div>
+              <div class="card" style="padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;">
+                <span style="font-size:1.5rem;">🎬</span>
+                <div><div style="font-weight:600;font-size:.9rem;">Título de la película</div><div style="font-size:.8rem;color:var(--muted);">Director / Año</div></div>
+              </div>
+              <div class="card" style="padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;">
+                <span style="font-size:1.5rem;">📗</span>
+                <div><div style="font-weight:600;font-size:.9rem;">Título del libro</div><div style="font-size:.8rem;color:var(--muted);">Autor</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 25: PROYECCIONES A FUTURO
+      ================================================== -->
+      <section class="spa-section" id="proyecciones">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="rocket" width="14" height="14"></i> Bloque 7</div>
+          <h2 class="sec-title">Proyecciones a <span>Futuro</span></h2>
+          <p class="sec-sub">Mis metas a mediano y largo plazo.</p>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1rem;color:var(--accent);">Mediano plazo (1-3 años)</h3>
+            <div style="display:flex;flex-direction:column;gap:.75rem;">
+              <!-- Edita cada meta a mediano plazo -->
+              <div class="card" style="padding:1rem 1.25rem;border-color:rgba(180,138,255,.2);">
+                <p style="font-size:.9rem;">Meta o proyecto a alcanzar en 1-3 años.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Otra meta importante a corto-mediano plazo.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Meta académica, certificación o habilidad a desarrollar.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1rem;color:var(--accent-2);">Largo plazo (5+ años)</h3>
+            <div style="display:flex;flex-direction:column;gap:.75rem;">
+              <!-- Edita cada meta a largo plazo -->
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Visión profesional a largo plazo (rol, empresa, impacto).</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;border-color:rgba(255,126,179,.2);">
+                <p style="font-size:.9rem;">Meta personal o de vida que aspiras a lograr.</p>
+              </div>
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.9rem;">Legado o contribución que deseas dejar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 26: EMPRESAS DE ENSUEÑO
+      ================================================== -->
+      <section class="spa-section" id="empresas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="building-2" width="14" height="14"></i> Bloque 7</div>
+          <h2 class="sec-title">Empresas de <span>Ensueño</span></h2>
+          <p class="sec-sub">Sectores y empresas donde me gustaría desarrollarme.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre de empresa, sector y por qué la elegiste -->
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">🌐</div>
+            <div class="card-title">Nombre de la empresa</div>
+            <div class="card-sub">Sector / Industria</div>
+            <p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;">Por qué esta empresa representa tu meta.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">☁️</div>
+            <div class="card-title">Nombre de la empresa</div>
+            <div class="card-sub">Sector / Industria</div>
+            <p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;">Por qué esta empresa representa tu meta.</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <div style="font-size:2.5rem;margin-bottom:.75rem;">🚀</div>
+            <div class="card-title">Nombre de la empresa</div>
+            <div class="card-sub">Sector / Industria</div>
+            <p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;">Por qué esta empresa representa tu meta.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 27: VOLUNTARIADO
+      ================================================== -->
+      <section class="spa-section" id="voluntariado">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="hand-heart" width="14" height="14"></i> Bloque 7</div>
+          <h2 class="sec-title">Voluntariado y <span>Causas Sociales</span></h2>
+          <p class="sec-sub">Mi compromiso con la comunidad y el entorno.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita cada experiencia de voluntariado -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="hand-heart" width="18" height="18"></i></div>
+            <div class="card-title">Nombre de la ONG o proyecto</div>
+            <div class="card-sub">Rol que desempeñaste — Año o período</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Describe brevemente tu contribución y el impacto generado.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="leaf" width="18" height="18"></i></div>
+            <div class="card-title">Causa o proyecto de ayuda</div>
+            <div class="card-sub">Rol — Año</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Describe tu participación y el impacto.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 28: EMPRENDIMIENTOS
+      ================================================== -->
+      <section class="spa-section" id="emprendimientos">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="lightbulb" width="14" height="14"></i> Bloque 7</div>
+          <h2 class="sec-title"><span>Emprendimientos</span> e Ideas</h2>
+          <p class="sec-sub">Proyectos propios en mente o en desarrollo.</p>
+        </div>
+        <div class="cards-grid">
+          <!-- Edita nombre, estado y descripción de cada emprendimiento -->
+          <div class="card">
+            <div class="card-icon"><i data-lucide="lightbulb" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del emprendimiento / idea</div>
+            <div class="card-sub">Problema que resuelve y propuesta de valor.</div>
+            <div class="tags"><span class="tag pink">En idea</span></div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i data-lucide="zap" width="18" height="18"></i></div>
+            <div class="card-title">Nombre del emprendimiento</div>
+            <div class="card-sub">Problema que resuelve y propuesta de valor.</div>
+            <div class="tags"><span class="tag green">En desarrollo</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           SECCIÓN 29: DESCARGAR CV
+      ================================================== -->
+      <section class="spa-section" id="descargar-cv">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="download" width="14" height="14"></i> Bloque 8</div>
+          <h2 class="sec-title">Descargar <span>CV</span></h2>
+          <p class="sec-sub">Descarga o imprime mi currículum vitae.</p>
+        </div>
+        <div class="card glass" style="max-width:480px;padding:2.5rem;text-align:center;">
+          <div style="font-size:4rem;margin-bottom:1.25rem;">📄</div>
+          <!-- Edita tu nombre en el título del CV -->
+          <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;margin-bottom:.5rem;">Cesar Shisha</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.75rem;">
+            Currículum Vitae completo — Full Stack Developer<br/>
+            Última actualización: 2026
           </p>
-
-          <p class="hero-desc fade-in-up delay-6">
-            Desarrollador apasionado por construir soluciones robustas
-            desde el frontend hasta la infraestructura.
-            Del navegador al servidor, de la base de datos al contenedor.
-          </p>
-
-          <a href="#habilidades" class="hero-cta fade-in-up delay-7">
-            Ver habilidades →
-          </a>
-
+          <div style="display:flex;flex-direction:column;gap:.75rem;align-items:center;">
+            <!-- Botón de impresión (genera PDF del navegador) -->
+            <button class="cta-btn" onclick="window.print()" style="width:100%;justify-content:center;">
+              <i data-lucide="printer" width="16" height="16"></i>
+              Imprimir / Guardar como PDF
+            </button>
+            <!-- Para descarga real: cambia '#' por la ruta a tu CV.pdf -->
+            <a href="#" class="outline-btn" style="width:100%;justify-content:center;">
+              <i data-lucide="download" width="16" height="16"></i>
+              Descargar CV.pdf
+            </a>
+          </div>
         </div>
+      </section>
 
-        <!-- DERECHA: UNHEVAL -->
-        <div class="img-right fade-in-up delay-1">
-          <img src="img/images-unheval.jpg" alt="Universidad UNHEVAL" />
-          <span class="img-label">UNHEVAL</span>
+      <!-- ==================================================
+           SECCIÓN 30: LIBRO DE VISITAS
+      ================================================== -->
+      <section class="spa-section" id="libro-visitas">
+        <div class="sec-header">
+          <div class="sec-eyebrow"><i data-lucide="notebook-pen" width="14" height="14"></i> Bloque 8</div>
+          <h2 class="sec-title">Libro de <span>Visitas</span></h2>
+          <p class="sec-sub">Deja un mensaje, comentario o saludo.</p>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SECCIÓN CÓDIGO ===================== -->
-  <section class="code-section" id="codigo">
-    <div class="container">
-      <h2 class="code-section-title">Código fuente</h2>
-      <p class="code-section-sub">HTML, CSS y JavaScript de esta página, separados por pestaña.</p>
-
-      <div class="code-box">
-        <!-- Pestañas -->
-        <div class="code-tabs" role="tablist">
-          <button class="code-tab active" data-tab="html" role="tab" aria-selected="true">
-            <span class="tab-dot html-dot"></span> HTML
-          </button>
-          <button class="code-tab" data-tab="css" role="tab" aria-selected="false">
-            <span class="tab-dot css-dot"></span> CSS
-          </button>
-          <button class="code-tab" data-tab="js" role="tab" aria-selected="false">
-            <span class="tab-dot js-dot"></span> JavaScript
-          </button>
-          <button class="copy-btn" id="copyBtn" title="Copiar código">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span id="copyLabel">Copiar</span>
-          </button>
+        <div class="two-col">
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1.25rem;">Deja tu nota</h3>
+            <div class="form-group">
+              <label class="form-label">Tu nombre</label>
+              <input class="form-input" type="text" id="guestName" placeholder="¿Cómo te llamas?"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mensaje</label>
+              <textarea class="form-textarea" id="guestMsg" placeholder="Escribe tu mensaje, opinión o saludo..."></textarea>
+            </div>
+            <button class="cta-btn" onclick="addGuestEntry()">
+              <i data-lucide="send" width="15" height="15"></i> Publicar nota
+            </button>
+          </div>
+          <!-- Lista de notas del libro de visitas -->
+          <div>
+            <h3 style="font-weight:700;margin-bottom:1rem;">Notas recientes</h3>
+            <div id="guest-entries" style="display:flex;flex-direction:column;gap:.75rem;">
+              <!-- Las notas se agregan aquí dinámicamente -->
+              <div class="card" style="padding:1rem 1.25rem;">
+                <p style="font-size:.88rem;font-style:italic;color:var(--text);">"¡Excelente portafolio, muy bien estructurado!"</p>
+                <p style="font-size:.75rem;color:var(--accent);margin-top:.5rem;font-weight:600;">— Visitante de ejemplo</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Contenido de pestañas -->
-        <div class="code-content">
-          <pre class="code-block active" id="tab-html"><code></code></pre>
-          <pre class="code-block" id="tab-css"><code></code></pre>
-          <pre class="code-block" id="tab-js"><code></code></pre>
-        </div>
-      </div>
-    </div>
-  </section>
+    </main>
 
-  <!-- ===================== JAVASCRIPT ===================== -->
-  <script>
-    /* ---------- Cursor personalizado ---------- */
-    const dot  = document.getElementById('cursorDot');
-    const ring = document.getElementById('cursorRing');
-    let mouseX = 0, mouseY = 0;
-    let ringX  = 0, ringY  = 0;
+  </div><!-- /app -->
 
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.left = mouseX - 4 + 'px';
-      dot.style.top  = mouseY - 4 + 'px';
-    });
-
-    // Animar el anillo con suavidad (lerp)
-    function animateCursor() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX - 16 + 'px';
-      ring.style.top  = ringY - 16 + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // Efecto al pasar sobre enlaces / botones
-    const interactives = document.querySelectorAll('a, button, img');
-    interactives.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        ring.style.width   = '52px';
-        ring.style.height  = '52px';
-        ring.style.opacity = '0.6';
-        dot.style.transform = 'scale(0)';
-      });
-      el.addEventListener('mouseleave', () => {
-        ring.style.width   = '32px';
-        ring.style.height  = '32px';
-        ring.style.opacity = '1';
-        dot.style.transform = 'scale(1)';
-      });
-    });
-
-    /* ---------- Navbar: sombra al hacer scroll ---------- */
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        nav.style.background = 'rgba(10,10,15,0.95)';
-        nav.style.boxShadow = '0 1px 24px rgba(0,0,0,0.4)';
-      } else {
-        nav.style.background = 'rgba(10,10,15,0.75)';
-        nav.style.boxShadow = 'none';
-      }
-    });
-
-    /* ---------- Parallax suave en imágenes laterales ---------- */
-    const imgLeft  = document.querySelector('.img-left img');
-    const imgRight = document.querySelector('.img-right img');
-
-    window.addEventListener('mousemove', e => {
-      const cx = window.innerWidth  / 2;
-      const cy = window.innerHeight / 2;
-      const dx = (e.clientX - cx) / cx;
-      const dy = (e.clientY - cy) / cy;
-
-      if (imgLeft)  imgLeft.style.transform  = `translate(${dx * -8}px, ${dy * -6}px)`;
-      if (imgRight) imgRight.style.transform = `translate(${dx *  8}px, ${dy * -6}px)`;
-    });
-
-    /* ---------- Visor de código fuente ---------- */
-    const htmlCode = document.documentElement.outerHTML;
-
-    const cssContent = `/* ============================
-   Archivo: style.css
-   Proyecto: Shisha Dev Portfolio
-============================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap');
-
-/* VARIABLES & RESET */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --color-bg: #0a0a0f;
-  --color-surface: #111118;
-  --color-border: rgba(255,255,255,0.07);
-  --color-accent: #7c6aff;
-  --color-accent-2: #ff6a8a;
-  --color-text: #f0eff8;
-  --color-muted: #8884a8;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Space Grotesk', sans-serif;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* NAVBAR */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.2rem 3rem;
-  background: rgba(10,10,15,0.75);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--color-border);
-  transition: background 0.3s;
-}
-
-.nav-logo {
-  font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a {
-  text-decoration: none; color: var(--color-muted);
-  font-size: 0.92rem; font-weight: 500; position: relative; transition: color 0.25s;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
-  border-radius: 4px; transition: width 0.3s ease;
-}
-.nav-links a:hover { color: var(--color-text); }
-.nav-links a:hover::after { width: 100%; }
-
-/* HERO */
-.hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding-top: 6rem; z-index: 1; }
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-.hero-inner { display: grid; grid-template-columns: 180px 1fr 180px; gap: 2rem; align-items: center; min-height: 70vh; }
-
-/* IMÁGENES LATERALES */
-.img-left, .img-right { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
-.img-left img, .img-right img {
-  width: 160px; height: 160px; object-fit: cover;
-  border-radius: var(--radius-md); border: 1px solid var(--color-border);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  filter: brightness(0.9) saturate(0.85);
-}
-.img-left img:hover, .img-right img:hover {
-  transform: scale(1.04) rotate(-1deg);
-  box-shadow: 0 16px 48px rgba(124,106,255,0.25);
-  filter: brightness(1) saturate(1);
-}
-.img-label { font-size: 0.75rem; font-weight: 500; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.04em; }
-
-/* COLUMNA CENTRAL */
-.hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.2rem; }
-.perfil-wrapper { position: relative; width: 120px; height: 120px; margin-bottom: 0.5rem; }
-.perfil-wrapper img {
-  width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
-  border: 3px solid transparent;
-  background: linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
-              linear-gradient(135deg, var(--color-accent), var(--color-accent-2)) border-box;
-  box-shadow: 0 0 0 6px rgba(124,106,255,0.12);
-  transition: box-shadow 0.4s ease, transform 0.4s ease;
-}
-.perfil-wrapper::after {
-  content: ''; position: absolute; bottom: 6px; right: 6px;
-  width: 14px; height: 14px; background: #4ade80; border-radius: 50%;
-  border: 3px solid var(--color-bg);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-@keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.2);opacity:.7;} }
-
-.hero-tag {
-  display: inline-block; padding: 0.35rem 1rem;
-  background: rgba(124,106,255,0.12); border: 1px solid rgba(124,106,255,0.3);
-  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
-  color: var(--color-accent); letter-spacing: 0.08em; text-transform: uppercase;
-}
-
-.hero-content h1 { font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
-.hero-content h1 span { background: linear-gradient(135deg, var(--color-accent) 30%, var(--color-accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero-desc { font-size: 0.97rem; color: var(--color-muted); line-height: 1.7; max-width: 380px; }
-.hero-desc:first-of-type { font-size: 1rem; color: var(--color-text); font-weight: 500; }
-
-.hero-cta {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.8rem 2rem;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
-  color: #fff; text-decoration: none; border-radius: 100px;
-  font-weight: 600; font-size: 0.95rem; margin-top: 0.5rem;
-  box-shadow: 0 8px 24px rgba(124,106,255,0.3);
-  transition: transform 0.25s, box-shadow 0.25s;
-  overflow: hidden; position: relative;
-}
-.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(124,106,255,0.45); }
-
-/* CURSOR */
-.cursor-dot { width:8px; height:8px; background:var(--color-accent); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; }
-.cursor-ring { width:32px; height:32px; border:1.5px solid rgba(124,106,255,0.5); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transition: width 0.3s, height 0.3s, opacity 0.3s; }
-
-/* ANIMACIONES */
-.fade-in-up { opacity:0; transform:translateY(32px); animation:fadeInUp 0.7s ease forwards; }
-@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
-.delay-1{animation-delay:.1s} .delay-2{animation-delay:.25s} .delay-3{animation-delay:.4s}
-.delay-4{animation-delay:.55s} .delay-5{animation-delay:.7s} .delay-6{animation-delay:.85s} .delay-7{animation-delay:1s}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:2rem;}
-  .img-left,.img-right{flex-direction:row;justify-content:center;}
-  nav{padding:1rem 1.5rem;} .nav-links{gap:1.5rem;}
-}`;
-
-    const jsContent = `/* ============================
-   JavaScript — Shisha Portfolio
-============================ */
-
-/* Cursor personalizado */
-const dot  = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  dot.style.left = mouseX - 4 + 'px';
-  dot.style.top  = mouseY - 4 + 'px';
-});
-
-function animateCursor() {
-  ringX += (mouseX - ringX) * 0.12;
-  ringY += (mouseY - ringY) * 0.12;
-  ring.style.left = ringX - 16 + 'px';
-  ring.style.top  = ringY - 16 + 'px';
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-document.querySelectorAll('a, button, img').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    ring.style.width = '52px'; ring.style.height = '52px';
-    ring.style.opacity = '0.6'; dot.style.transform = 'scale(0)';
-  });
-  el.addEventListener('mouseleave', () => {
-    ring.style.width = '32px'; ring.style.height = '32px';
-    ring.style.opacity = '1'; dot.style.transform = 'scale(1)';
-  });
-});
-
-/* Navbar scroll */
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) {
-    nav.style.background = 'rgba(10,10,15,0.95)';
-    nav.style.boxShadow  = '0 1px 24px rgba(0,0,0,0.4)';
-  } else {
-    nav.style.background = 'rgba(10,10,15,0.75)';
-    nav.style.boxShadow  = 'none';
-  }
-});
-
-/* Parallax imágenes laterales */
-const imgLeft  = document.querySelector('.img-left img');
-const imgRight = document.querySelector('.img-right img');
-
-window.addEventListener('mousemove', e => {
-  const cx = window.innerWidth  / 2;
-  const cy = window.innerHeight / 2;
-  const dx = (e.clientX - cx) / cx;
-  const dy = (e.clientY - cy) / cy;
-  if (imgLeft)  imgLeft.style.transform  = \`translate(\${dx * -8}px, \${dy * -6}px)\`;
-  if (imgRight) imgRight.style.transform = \`translate(\${dx *  8}px, \${dy * -6}px)\`;
-});
-
-/* Visor de código — pestañas */
-const tabs = { html: htmlCode, css: cssContent, js: jsContent };
-const tabBtns = document.querySelectorAll('.code-tab');
-const codeBlocks = document.querySelectorAll('.code-block');
-
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const target = btn.dataset.tab;
-    tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-    codeBlocks.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    btn.setAttribute('aria-selected','true');
-    document.getElementById('tab-' + target).classList.add('active');
-  });
-});
-
-/* Botón copiar */
-document.getElementById('copyBtn').addEventListener('click', () => {
-  const activeTab = document.querySelector('.code-tab.active').dataset.tab;
-  const text = tabs[activeTab];
-  navigator.clipboard.writeText(text).then(() => {
-    const label = document.getElementById('copyLabel');
-    label.textContent = '¡Copiado!';
-    setTimeout(() => label.textContent = 'Copiar', 2000);
-  });
-});
-
-/* Cargar código HTML en la pestaña al iniciar */
-document.querySelector('#tab-html code').textContent = document.documentElement.outerHTML;
-document.querySelector('#tab-css  code').textContent = cssContent;
-document.querySelector('#tab-js   code').textContent = jsContent;`;
-
-    // Insertar contenido en los bloques de código
-    document.querySelector('#tab-html code').textContent = document.documentElement.outerHTML;
-    document.querySelector('#tab-css  code').textContent = cssContent;
-    document.querySelector('#tab-js   code').textContent = jsContent;
-
-    // Pestañas
-    const tabBtns = document.querySelectorAll('.code-tab');
-    const codeBlocks = document.querySelectorAll('.code-block');
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.dataset.tab;
-        tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-        codeBlocks.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected','true');
-        document.getElementById('tab-' + target).classList.add('active');
-      });
-    });
-
-    // Copiar
-    const allCode = { html: document.documentElement.outerHTML, css: cssContent, js: jsContent };
-    document.getElementById('copyBtn').addEventListener('click', () => {
-      const activeTab = document.querySelector('.code-tab.active').dataset.tab;
-      navigator.clipboard.writeText(allCode[activeTab]).then(() => {
-        const label = document.getElementById('copyLabel');
-        label.textContent = '¡Copiado!';
-        setTimeout(() => label.textContent = 'Copiar', 2000);
-      });
-    });
-  </script>
-
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <!-- Edita el nombre en el copyright -->
+    <span>© 2026 <strong>Shisha</strong>. Todos los derechos reservados.</span>
+    <span style="color:var(--muted);font-size:.78rem;">Diseñado con ❤️ — Portafolio SPA</span>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>

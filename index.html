@@ -12,9 +12,17 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
   <!-- Iconos (Lucide via CDN) -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- jsPDF — para descargar el CV como PDF directamente desde el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+  <!-- Rayos animados de fondo (estilo aurora) -->
+  <div class="bg-rays" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
 
   <!-- Cursor personalizado -->
   <div class="cursor-dot" id="cursorDot"></div>
@@ -29,6 +37,33 @@
       <li><a href="#" onclick="showSection('habilidades-tecnicas')">Skills</a></li>
       <li><a href="#" onclick="showSection('exp-laboral')">Experiencia</a></li>
     </ul>
+
+    <!-- ============================================
+         REDES SOCIALES — edita los href con tus URLs
+    ============================================ -->
+    <div class="nav-socials">
+      <a href="https://linkedin.com/in/shisha" target="_blank" rel="noopener noreferrer"
+         class="nav-social-btn" data-social="linkedin" aria-label="LinkedIn">
+        <i data-lucide="linkedin" width="16" height="16"></i>
+      </a>
+      <a href="https://github.com/cesarmshisha123/" target="_blank" rel="noopener noreferrer"
+         class="nav-social-btn" data-social="github" aria-label="GitHub">
+        <i data-lucide="github" width="16" height="16"></i>
+      </a>
+      <a href="https://www.facebook.com/cesarjeferson.camargo" target="_blank" rel="noopener noreferrer"
+         class="nav-social-btn" data-social="facebook" aria-label="Twitter / X">
+        <i data-lucide="facebook" width="16" height="16"></i>
+      </a>
+      <a href="https://www.instagram.com/cesar27.shisha/" target="_blank" rel="noopener noreferrer"
+         class="nav-social-btn" data-social="instagram" aria-label="Instagram">
+        <i data-lucide="instagram" width="16" height="16"></i>
+      </a>
+      <a href="mailto:camargocesar08012005@gmai.com"
+         class="nav-social-btn" data-social="mail" aria-label="Enviar correo">
+        <i data-lucide="mail" width="16" height="16"></i>
+      </a>
+    </div>
+
     <a href="#" class="nav-action" onclick="showSection('contacto')">
       Contacto ↗
     </a>
@@ -446,21 +481,21 @@
         <div class="timeline">
           <!-- Edita cada etapa educativa aquí -->
           <div class="tl-item">
-            <div class="tl-period">Inicial — Edita el año</div>
-            <div class="tl-title">Nombre del jardín de infancia</div>
-            <div class="tl-place">Ciudad, País</div>
-            <div class="tl-desc">Primeras experiencias de aprendizaje y socialización.</div>
+            <div class="tl-period">INICIAL</div>
+            <div class="tl-title">LOS ALCANFORES</div>
+            <div class="tl-place">Lima - CHISCA</div>
+            <div class="tl-desc">Aprendi a relacionarme con mas personas, con mis primeros aprendizajes</div>
           </div>
           <div class="tl-item">
-            <div class="tl-period">Primaria — Edita los años</div>
-            <div class="tl-title">Nombre del colegio de primaria</div>
-            <div class="tl-place">Ciudad, País</div>
+            <div class="tl-period">PRIMARIA</div>
+            <div class="tl-title">NUESTRA SEÑORA DE FATIMA</div>
+            <div class="tl-place">Lima - EL AGUSTINO</div>
             <div class="tl-desc">Desarrollo de habilidades básicas de lecto-escritura y matemáticas. Participé en concursos académicos.</div>
           </div>
           <div class="tl-item">
-            <div class="tl-period">Secundaria — Edita los años</div>
-            <div class="tl-title">Nombre del colegio de secundaria</div>
-            <div class="tl-place">Ciudad, País</div>
+            <div class="tl-period">SECUNDARIA</div>
+            <div class="tl-title">JOSE CARLOS MARIATEGUI</div>
+            <div class="tl-place">Lima - EL AGUSTINO</div>
             <div class="tl-desc">Mención en Ciencias. Primer acercamiento a la programación y el pensamiento lógico. Delegado de aula.</div>
           </div>
         </div>
@@ -477,14 +512,14 @@
         </div>
         <div class="card" style="max-width:680px;padding:2rem;">
           <!-- ⚠️ Imagen UNHEVAL original conservada -->
-          <img src="img/images-unheval.jpg" alt="UNHEVAL" style="width:100%;height:180px;object-fit:cover;border-radius:var(--r-md);margin-bottom:1.25rem;"/>
+          <img src="img/UNHEVAL.jpg" alt="UNHEVAL" style="width:100%;height:180px;object-fit:cover;border-radius:var(--r-md);margin-bottom:1.25rem;"/>
           <!-- Edita los datos universitarios aquí -->
-          <div class="tl-period">2020 — Actualidad</div>
+          <div class="tl-period">2023 — Actualidad</div>
           <h3 style="font-size:1.2rem;font-weight:800;margin:.3rem 0 .2rem;">Ingeniería de Sistemas</h3>
           <div class="tl-place">Universidad Nacional Hermilio Valdizán — UNHEVAL, Huánuco, Perú</div>
           <p style="font-size:.9rem;color:var(--muted);margin-top:.75rem;line-height:1.65;">
             Carrera enfocada en el diseño, desarrollo e implementación de sistemas de información y redes.
-            Estado actual: <strong style="color:var(--accent-3);">En curso</strong> — Ciclo X.
+            Estado actual: <strong style="color:var(--accent-3);">En curso</strong> — Ciclo VII.
           </p>
           <div class="tags" style="margin-top:1rem;">
             <span class="tag green">Sistemas Operativos</span>
@@ -494,8 +529,8 @@
             <span class="tag green">Servidores</span>
           </div>
           <div class="stat-row" style="margin-top:1.5rem;">
-            <div class="stat-pill"><strong>9.5</strong><span>Promedio</span></div>
-            <div class="stat-pill"><strong>X</strong><span>Ciclo actual</span></div>
+            <div class="stat-pill"><strong>14.1</strong><span>Promedio</span></div>
+            <div class="stat-pill"><strong>VII</strong><span>Ciclo actual</span></div>
             <div class="stat-pill"><strong>3</strong><span>Proyectos acad.</span></div>
           </div>
         </div>
@@ -514,27 +549,9 @@
           <!-- Duplica estas tarjetas para agregar más certificaciones -->
           <div class="card">
             <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
-            <div class="card-title">Nombre del certificado 1</div>
-            <div class="card-sub">Institución — Edita el año</div>
-            <div class="tags"><span class="tag">Online</span></div>
-          </div>
-          <div class="card">
-            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
-            <div class="card-title">Nombre del certificado 2</div>
-            <div class="card-sub">Institución — Edita el año</div>
-            <div class="tags"><span class="tag green">Presencial</span></div>
-          </div>
-          <div class="card">
-            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
-            <div class="card-title">Nombre del certificado 3</div>
-            <div class="card-sub">Institución — Edita el año</div>
-            <div class="tags"><span class="tag pink">Taller</span></div>
-          </div>
-          <div class="card">
-            <div class="card-icon"><i data-lucide="award" width="18" height="18"></i></div>
-            <div class="card-title">Nombre del certificado 4</div>
-            <div class="card-sub">Institución — Edita el año</div>
-            <div class="tags"><span class="tag">Seminario</span></div>
+            <div class="card-title">CERTIFICADO DE INGLES BASICO</div>
+            <div class="card-sub">ICPNA — 2023</div>
+            <div class="tags"><span class="tag">PRECENSIAL</span></div>
           </div>
         </div>
       </section>
@@ -560,16 +577,9 @@
           <div class="skill-bar">
             <div class="skill-bar-top">
               <span class="skill-bar-label">Inglés</span>
-              <span class="skill-bar-pct">65%</span>
+              <span class="skill-bar-pct">50%</span>
             </div>
-            <div class="skill-track"><div class="skill-fill" data-pct="65"></div></div>
-          </div>
-          <div class="skill-bar">
-            <div class="skill-bar-top">
-              <span class="skill-bar-label">Portugués</span>
-              <span class="skill-bar-pct">20%</span>
-            </div>
-            <div class="skill-track"><div class="skill-fill" data-pct="20"></div></div>
+            <div class="skill-track"><div class="skill-fill" data-pct="50 "></div></div>
           </div>
           <!-- Agrega más idiomas duplicando el bloque .skill-bar -->
         </div>
@@ -679,16 +689,20 @@
         <div class="cards-grid">
           <!-- Edita nombre, especie y descripción de cada mascota -->
           <div class="card" style="text-align:center;">
-            <div style="font-size:3rem;margin-bottom:.75rem;">🐶</div>
-            <div class="card-title">Nombre de la mascota</div>
-            <div class="card-sub">Especie / Raza — Edad</div>
-            <div class="card-sub" style="margin-top:.5rem;">Algo especial sobre tu mascota.</div>
+            <div style="font-size:3rem;margin-bottom:.75rem;">
+              <img src="img/neron.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">NERON</div>
+            <div class="card-sub">Beagle / Fallecio</div>
+            <div class="card-sub" style="margin-top:.5rem;">Era muy bonito, fue el unico perro que tuve, pero se fue por una enfermedad muy fea</div>
           </div>
           <div class="card" style="text-align:center;">
-            <div style="font-size:3rem;margin-bottom:.75rem;">🐱</div>
-            <div class="card-title">Nombre de la mascota</div>
-            <div class="card-sub">Especie / Raza — Edad</div>
-            <div class="card-sub" style="margin-top:.5rem;">Algo especial sobre tu mascota.</div>
+            <div style="font-size:3rem;margin-bottom:.75rem;">
+              <img src="img/misifus.jpg" alt="Cesar Shisha"/>
+            </div>
+            <div class="card-title">Misifus</div>
+            <div class="card-sub">Pelusa / 5 años</div>
+            <div class="card-sub" style="margin-top:.5rem;">Muy tierno, pero tambien es muy bandido, se desaparece muy seguido.</div>
           </div>
         </div>
       </section>
@@ -703,18 +717,21 @@
           <p class="sec-sub">Personas que han marcado mi camino académico y profesional.</p>
         </div>
         <div class="cards-grid">
-          <!-- Edita nombre, rol y descripción de cada mentor -->
           <div class="card">
-            <div class="card-icon"><i data-lucide="star" width="18" height="18"></i></div>
-            <div class="card-title">Nombre del mentor</div>
-            <div class="card-sub">Rol (ej: Docente universitario, Jefe de área)</div>
-            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Lo que aprendí de esta persona y cómo influyó en mi desarrollo.</p>
+            <div class="card-icon"><i data-lucide="star" width="18" height="18">
+              <img src="img/lalo.jpg" alt="Cesar Shisha">
+            </i></div>
+            <div class="card-title">LALO</div>
+            <div class="card-sub">Amigo/Exjefe</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Es de las personas que mas confio en estas fechas, me apoyo en los momentos mas duros, sabe de mi vida, y no me dijo</p>
           </div>
           <div class="card">
-            <div class="card-icon"><i data-lucide="star" width="18" height="18"></i></div>
-            <div class="card-title">Nombre del mentor</div>
-            <div class="card-sub">Rol</div>
-            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Lo que aprendí de esta persona y cómo influyó en mi desarrollo.</p>
+            <div class="card-icon"><i data-lucide="star" width="18" height="18">
+              <img src="img/samuel.jpg" alt="Cesar Shisha">
+            </i></div>
+            <div class="card-title">Samuel</div>
+            <div class="card-sub">Tio</div>
+            <p style="font-size:.85rem;color:var(--muted);margin-top:.75rem;">Me enseño a comportarme y como es que yo debo de ser como persona, que debo esforzarme para lograr lo que quiero</p>
           </div>
         </div>
       </section>
@@ -731,26 +748,26 @@
         <div class="timeline">
           <!-- Edita cada puesto laboral aquí -->
           <div class="tl-item">
-            <div class="tl-period">Mes Año — Mes Año (o Actualidad)</div>
-            <div class="tl-title">Nombre del puesto</div>
-            <div class="tl-place">Nombre de la empresa — Ciudad</div>
+            <div class="tl-period">NIVIEMBRE 2023 - ENERO 2026</div>
+            <div class="tl-title">Mesero - Administrador</div>
+            <div class="tl-place">El chanquesito - Huanuco</div>
             <div class="tl-desc">
               <ul style="padding-left:1.2rem;margin-top:.5rem;color:var(--muted);font-size:.88rem;line-height:1.8;">
-                <li>Función o logro principal 1</li>
-                <li>Función o logro principal 2</li>
-                <li>Función o logro principal 3</li>
+                <li>Atender CLientes</li>
+                <li>Verificar proviciones para la empresa</li>
+                <li>Contratacion y despido de personal</li>
               </ul>
             </div>
-            <div class="tags" style="margin-top:.75rem;"><span class="tag">Tecnología 1</span><span class="tag green">Tecnología 2</span></div>
+            <div class="tags" style="margin-top:.75rem;"><span class="tag">CEVICHERIA</span><span class="tag green">VENTA DE COMIDA</span></div>
           </div>
           <div class="tl-item">
-            <div class="tl-period">Mes Año — Mes Año</div>
-            <div class="tl-title">Nombre del puesto anterior</div>
-            <div class="tl-place">Nombre de la empresa — Ciudad</div>
+            <div class="tl-period">FEREBRO 2026 - ACTUALIDAD</div>
+            <div class="tl-title">DOCENTE</div>
+            <div class="tl-place">Yachaywasi -  Huanuco</div>
             <div class="tl-desc">
               <ul style="padding-left:1.2rem;margin-top:.5rem;color:var(--muted);font-size:.88rem;line-height:1.8;">
-                <li>Función o logro principal 1</li>
-                <li>Función o logro principal 2</li>
+                <li>Dictar clases preuniversiarias</li>
+                <li>Velar por el bienestar del alumno</li>
               </ul>
             </div>
           </div>
@@ -833,22 +850,24 @@
         <div class="cards-grid">
           <!-- Edita cada testimonio/recomendación -->
           <div class="testimonial">
-            <p class="testimonial-text">"Escribe aquí la recomendación de un colega, docente o jefe."</p>
+            <p class="testimonial-text">"Excelente docente de gran trayectoria y excelencia con buenas manera de enseñar"</p>
             <div class="testimonial-author">
-              <div class="testimonial-avatar">A</div>
+              <div class="testimonial-avatar">
+                <img src="img/pasquel.jpg" alt="Cesar Shisha">
+              </div>
               <div>
-                <div class="testimonial-name">Nombre del recomendador</div>
-                <div class="testimonial-role">Cargo — Empresa</div>
+                <div class="testimonial-name">FRANK ALEX PASQUEL CAJAS</div>
+                <div class="testimonial-role">Docente - Unheval</div>
               </div>
             </div>
           </div>
           <div class="testimonial">
-            <p class="testimonial-text">"Escribe aquí otra recomendación de un colega o docente."</p>
+            <p class="testimonial-text">Exelente profesional de alta trayectoria, con ganas de buenas gestion y mejorar Huanuco</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar" style="background:linear-gradient(135deg,var(--accent-2),var(--accent-3));">B</div>
               <div>
-                <div class="testimonial-name">Nombre del recomendador</div>
-                <div class="testimonial-role">Cargo — Empresa</div>
+                <div class="testimonial-name">Guillermo Bocangel</div>
+                <div class="testimonial-role">Rector - Unheval</div>
               </div>
             </div>
           </div>
@@ -1320,26 +1339,31 @@
           <h2 class="sec-title">Descargar <span>CV</span></h2>
           <p class="sec-sub">Descarga o imprime mi currículum vitae.</p>
         </div>
-        <div class="card glass" style="max-width:480px;padding:2.5rem;text-align:center;">
-          <div style="font-size:4rem;margin-bottom:1.25rem;">📄</div>
+        <div class="card glass cv-card">
+          <div class="cv-icon">📄</div>
           <!-- Edita tu nombre en el título del CV -->
-          <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;margin-bottom:.5rem;">Cesar Shisha</h3>
-          <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.75rem;">
-            Currículum Vitae completo — Full Stack Developer<br/>
-            Última actualización: 2026
+          <h3 class="cv-name">Cesar Shisha</h3>
+          <p class="cv-meta">
+            Currículum Vitae — Full Stack Developer<br/>
+            <span style="color:var(--accent);">Última actualización: 2026</span>
           </p>
-          <div style="display:flex;flex-direction:column;gap:.75rem;align-items:center;">
-            <!-- Botón de impresión (genera PDF del navegador) -->
-            <button class="cta-btn" onclick="window.print()" style="width:100%;justify-content:center;">
-              <i data-lucide="printer" width="16" height="16"></i>
-              Imprimir / Guardar como PDF
-            </button>
-            <!-- Para descarga real: cambia '#' por la ruta a tu CV.pdf -->
-            <a href="#" class="outline-btn" style="width:100%;justify-content:center;">
+
+          <!-- Botones de descarga -->
+          <div class="cv-actions">
+            <button class="cta-btn cv-download-btn" onclick="downloadCV()">
               <i data-lucide="download" width="16" height="16"></i>
               Descargar CV.pdf
-            </a>
+            </button>
+            <button class="outline-btn" onclick="window.print()">
+              <i data-lucide="printer" width="16" height="16"></i>
+              Imprimir / Vista previa
+            </button>
           </div>
+
+          <p class="cv-hint">
+            <i data-lucide="zap" width="12" height="12"></i>
+            PDF generado al instante en tu navegador — sin redirecciones
+          </p>
         </div>
       </section>
 

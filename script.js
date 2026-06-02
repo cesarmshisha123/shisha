@@ -144,3 +144,223 @@ window.addEventListener('mousemove', e => {
     if (imgLeft)  imgLeft.style.transform  = `translate(${dx * -7}px, ${dy * -5}px)`;
     if (imgRight) imgRight.style.transform = `translate(${dx *  7}px, ${dy * -5}px)`;
 });
+
+/* ====================================================
+    9. DESCARGAR CV — Generación de PDF con jsPDF
+    El PDF se genera y descarga al instante,
+    sin diálogos de impresión ni redirecciones.
+
+    📝 PARA EDITAR TUS DATOS: modifica el objeto `cv` abajo.
+==================================================== */
+function downloadCV() {
+    // Validar que jsPDF esté cargado
+    if (!window.jspdf) {
+    alert('Error: la librería de PDF no se cargó. Recarga la página.');
+    return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+    // ============ DATOS DEL CV — EDITA AQUÍ ============
+    const cv = {
+    name:     'CESAR SHISHA',
+    role:     'Full Stack Developer',
+    email:    'cesar.shisha@email.com',
+    phone:    '+51 900 000 000',
+    linkedin: 'linkedin.com/in/shisha',
+    github:   'github.com/shisha',
+    location: 'Huánuco, Perú',
+    about:    'Desarrollador apasionado por construir soluciones robustas desde el frontend hasta la infraestructura. Del navegador al servidor, de la base de datos al contenedor. Especializado en JavaScript, Node.js, Python y administración de servidores.',
+    education: [
+        {
+        title:  'Ingeniería de Sistemas',
+        org:    'UNHEVAL — Universidad Nacional Hermilio Valdizán',
+        period: '2021 — Actualidad'
+        }
+    ],
+    experience: [
+        {
+        title:  'Full Stack Developer',
+        org:    'Freelance / Proyectos personales',
+        period: '2023 — Actualidad',
+        desc:   'Desarrollo de aplicaciones web completas usando tecnologías modernas. Integración frontend-backend, gestión de bases de datos y despliegue en la nube.'
+        },
+        {
+        title:  'Administrador de Servidores Jr.',
+        org:    'Práctica universitaria',
+        period: '2022 — 2023',
+        desc:   'Configuración y mantenimiento de servidores Linux. Gestión de servicios, monitoreo y automatización con scripts Bash.'
+        }
+    ],
+    skills:    ['JavaScript', 'TypeScript', 'Node.js', 'Python', 'React',
+                'PostgreSQL', 'MongoDB', 'Docker', 'Linux', 'Git', 'AWS', 'Nginx'],
+    languages: [
+        { lang: 'Español', level: 'Nativo' },
+        { lang: 'Inglés',  level: 'Intermedio (B1)' }
+    ]
+    };
+    // =====================================================
+
+    // Paleta (RGB)
+    const PURPLE = [138, 92, 246];   // violeta más sólido para impresión
+    const PINK   = [236, 72, 153];
+    const DARK   = [30, 30, 45];
+    const GRAY   = [110, 110, 130];
+    const LIGHT  = [245, 240, 255];
+
+    let y = 0;
+
+    /* ===== HEADER con barra de color ===== */
+    doc.setFillColor(...PURPLE);
+    doc.rect(0, 0, 210, 42, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(26);
+    doc.text(cv.name, 15, 20);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(13);
+    doc.text(cv.role, 15, 29);
+
+    // Línea separadora rosa
+    doc.setDrawColor(...PINK);
+    doc.setLineWidth(0.7);
+    doc.line(15, 33, 55, 33);
+
+    y = 52;
+
+    /* ===== Datos de contacto en 2 columnas ===== */
+    doc.setTextColor(...DARK);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+
+    const contactL = [['Email',  cv.email],   ['Telefono', cv.phone]];
+    const contactR = [['LinkedIn', cv.linkedin], ['GitHub', cv.github]];
+    let yC = y;
+    contactL.forEach(([k, v]) => {
+    doc.setFont('helvetica', 'bold'); doc.setTextColor(...PURPLE);
+    doc.text(k + ':', 15, yC);
+    doc.setFont('helvetica', 'normal'); doc.setTextColor(...DARK);
+    doc.text(v, 35, yC);
+    yC += 5.5;
+    });
+    yC = y;
+    contactR.forEach(([k, v]) => {
+    doc.setFont('helvetica', 'bold'); doc.setTextColor(...PURPLE);
+    doc.text(k + ':', 110, yC);
+    doc.setFont('helvetica', 'normal'); doc.setTextColor(...DARK);
+    doc.text(v, 132, yC);
+    yC += 5.5;
+    });
+    y += 13;
+
+    doc.setFont('helvetica', 'bold'); doc.setTextColor(...PURPLE);
+    doc.text('Ubicacion:', 15, y);
+    doc.setFont('helvetica', 'normal'); doc.setTextColor(...DARK);
+    doc.text(cv.location, 35, y);
+    y += 10;
+
+    /* ===== Helper: título de sección ===== */
+    function sectionTitle(title) {
+    y += 2;
+    doc.setFillColor(...PURPLE);
+    doc.rect(15, y - 4, 3.5, 6, 'F');
+    doc.setTextColor(...DARK);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.text(title.toUpperCase(), 22, y + 0.5);
+    y += 4;
+    doc.setDrawColor(220, 220, 230);
+    doc.setLineWidth(0.3);
+    doc.line(15, y, 195, y);
+    y += 6;
+    }
+
+    /* ===== PERFIL ===== */
+    sectionTitle('Perfil Profesional');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(60, 60, 75);
+    const aboutLines = doc.splitTextToSize(cv.about, 180);
+    doc.text(aboutLines, 15, y);
+    y += aboutLines.length * 5 + 4;
+
+    /* ===== EDUCACIÓN ===== */
+    sectionTitle('Educacion');
+    cv.education.forEach(edu => {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.setTextColor(...DARK);
+    doc.text(edu.title, 15, y);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(...GRAY);
+    doc.text(edu.period, 195, y, { align: 'right' });
+    y += 5;
+    doc.setFont('helvetica', 'italic'); doc.setFontSize(10);
+    doc.setTextColor(80, 80, 100);
+    doc.text(edu.org, 15, y);
+    y += 9;
+    });
+
+    /* ===== EXPERIENCIA ===== */
+    sectionTitle('Experiencia Laboral');
+    cv.experience.forEach(exp => {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.setTextColor(...DARK);
+    doc.text(exp.title, 15, y);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+    doc.setTextColor(...GRAY);
+    doc.text(exp.period, 195, y, { align: 'right' });
+    y += 5;
+    doc.setFont('helvetica', 'italic'); doc.setFontSize(10);
+    doc.setTextColor(80, 80, 100);
+    doc.text(exp.org, 15, y);
+    y += 5;
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5);
+    doc.setTextColor(60, 60, 75);
+    const descLines = doc.splitTextToSize(exp.desc, 180);
+    doc.text(descLines, 15, y);
+    y += descLines.length * 4.5 + 6;
+    });
+
+    /* ===== SKILLS como tags ===== */
+    sectionTitle('Habilidades Tecnicas');
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    let xPos = 15;
+    cv.skills.forEach(skill => {
+    const w = doc.getTextWidth(skill) + 6;
+    if (xPos + w > 195) { xPos = 15; y += 8; }
+    doc.setFillColor(...LIGHT);
+    doc.roundedRect(xPos, y - 4, w, 6.5, 2, 2, 'F');
+    doc.setTextColor(...PURPLE);
+    doc.text(skill, xPos + 3, y);
+    xPos += w + 2.5;
+    });
+    y += 12;
+
+    /* ===== IDIOMAS ===== */
+    sectionTitle('Idiomas');
+    cv.languages.forEach(lang => {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+    doc.setTextColor(...DARK);
+    doc.text(lang.lang, 15, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...GRAY);
+    doc.text(lang.level, 60, y);
+    y += 6;
+    });
+
+    /* ===== FOOTER ===== */
+    doc.setFontSize(8);
+    doc.setTextColor(...GRAY);
+    doc.text(
+    'CV generado desde el portafolio web — ' + new Date().toLocaleDateString('es-PE'),
+    105, 290, { align: 'center' }
+    );
+
+    // Nombre de archivo limpio (sin tildes/espacios)
+    const fileName = 'CV_' + cv.name.replace(/\s+/g, '_').replace(/[^\w]/g, '') + '.pdf';
+    doc.save(fileName);
+}

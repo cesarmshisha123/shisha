@@ -38,14 +38,112 @@ body {
   min-height: 100vh;
 }
 
-/* Fondo animado — degradados radiales fijos */
+/* Fondo animado — degradados radiales + aurora pulsante */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 55% at 15%  8%,  rgba(180,138,255,.10) 0%, transparent 55%),
-    radial-gradient(ellipse 55% 45% at 85% 92%,  rgba(255,126,179,.08) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 50% 50%,  rgba(96,224,184,.04)  0%, transparent 60%);
+    radial-gradient(ellipse 70% 55% at 15%  8%,  rgba(180,138,255,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 85% 92%,  rgba(255,126,179,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 35% at 50% 50%,  rgba(96,224,184,.05)  0%, transparent 60%);
+}
+
+/* Capa AURORA — manchas que respiran lentamente */
+body::after {
+  content: '';
+  position: fixed; inset: -25%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(180,138,255,.18) 0%, transparent 35%),
+    radial-gradient(circle at 70% 80%, rgba(255,126,179,.14) 0%, transparent 35%),
+    radial-gradient(circle at 80% 30%, rgba(96,224,184,.10)  0%, transparent 30%);
+  filter: blur(60px);
+  animation: auroraBreathe 18s ease-in-out infinite alternate;
+}
+@keyframes auroraBreathe {
+  0%   { transform: translate(0, 0)        scale(1)    rotate(0deg);   opacity: .85; }
+  50%  { transform: translate(-3%, 2%)     scale(1.08) rotate(8deg);   opacity: 1;   }
+  100% { transform: translate(2%, -2%)     scale(1.04) rotate(-6deg);  opacity: .9;  }
+}
+
+/* ============================================================
+   BG-RAYS — rayos diagonales animados (estilo aurora boreal)
+   Se inserta en <body> como <div class="bg-rays">...</div>
+============================================================ */
+.bg-rays {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.bg-rays span {
+  position: absolute;
+  top: -20%;
+  width: 2px;
+  height: 140vh;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0;
+  transform-origin: top center;
+  will-change: transform, opacity;
+  animation: rayFloat 14s ease-in-out infinite;
+}
+/* Cada rayo con posición, color, rotación y tiempos distintos */
+.bg-rays span:nth-child(1) {
+  left: 8%;
+  background: linear-gradient(180deg, transparent, rgba(180,138,255,.55) 50%, transparent);
+  --rot: 14deg;
+  animation-delay: 0s;
+  animation-duration: 13s;
+}
+.bg-rays span:nth-child(2) {
+  left: 22%;
+  background: linear-gradient(180deg, transparent, rgba(255,126,179,.45) 50%, transparent);
+  --rot: -10deg;
+  width: 3px;
+  animation-delay: 2.5s;
+  animation-duration: 16s;
+}
+.bg-rays span:nth-child(3) {
+  left: 42%;
+  background: linear-gradient(180deg, transparent, rgba(96,224,184,.45) 50%, transparent);
+  --rot: 18deg;
+  animation-delay: 5s;
+  animation-duration: 15s;
+}
+.bg-rays span:nth-child(4) {
+  left: 60%;
+  background: linear-gradient(180deg, transparent, rgba(180,138,255,.50) 50%, transparent);
+  --rot: -16deg;
+  width: 2.5px;
+  animation-delay: 1.5s;
+  animation-duration: 12s;
+}
+.bg-rays span:nth-child(5) {
+  left: 76%;
+  background: linear-gradient(180deg, transparent, rgba(255,126,179,.40) 50%, transparent);
+  --rot: 12deg;
+  animation-delay: 4s;
+  animation-duration: 17s;
+}
+.bg-rays span:nth-child(6) {
+  left: 92%;
+  background: linear-gradient(180deg, transparent, rgba(96,224,184,.40) 50%, transparent);
+  --rot: -8deg;
+  width: 1.5px;
+  animation-delay: 7s;
+  animation-duration: 14s;
+}
+
+@keyframes rayFloat {
+  0%   { transform: translateY(-15%) rotate(var(--rot, 12deg)); opacity: 0; }
+  15%  { opacity: .9; }
+  50%  { transform: translateY(10%)  rotate(var(--rot, 12deg)); opacity: .7; }
+  85%  { opacity: .8; }
+  100% { transform: translateY(25%)  rotate(var(--rot, 12deg)); opacity: 0; }
+}
+
+/* Respeto a usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  .bg-rays span { animation: none; }
 }
 
 a { color: inherit; text-decoration: none; }
@@ -121,6 +219,63 @@ nav {
   background: rgba(180,138,255,.12);
   border-color: var(--accent);
   transform: translateY(-1px);
+}
+
+/* ============================================================
+   NAV — BOTONES DE REDES SOCIALES
+============================================================ */
+.nav-socials {
+  display: flex; align-items: center; gap: .45rem;
+  margin: 0 .85rem 0 auto; /* empuja a la derecha */
+}
+.nav-social-btn {
+  width: 34px; height: 34px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(255,255,255,.02);
+  transition: var(--transition);
+  position: relative;
+  text-decoration: none;
+}
+.nav-social-btn svg { transition: transform .25s ease; }
+.nav-social-btn:hover {
+  transform: translateY(-3px);
+  color: var(--text);
+}
+.nav-social-btn:hover svg { transform: scale(1.15); }
+
+/* Colores por red social — efecto brand al hover */
+.nav-social-btn[data-social="linkedin"]:hover {
+  color: #fff;
+  border-color: rgba(10,102,194,.6);
+  background: rgba(10,102,194,.18);
+  box-shadow: 0 8px 22px rgba(10,102,194,.4);
+}
+.nav-social-btn[data-social="github"]:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,.45);
+  background: rgba(255,255,255,.08);
+  box-shadow: 0 8px 22px rgba(255,255,255,.18);
+}
+.nav-social-btn[data-social="twitter"]:hover {
+  color: #fff;
+  border-color: rgba(29,161,242,.6);
+  background: rgba(29,161,242,.18);
+  box-shadow: 0 8px 22px rgba(29,161,242,.4);
+}
+.nav-social-btn[data-social="instagram"]:hover {
+  color: #fff;
+  border-color: rgba(225,48,108,.6);
+  background: linear-gradient(135deg, rgba(225,48,108,.25), rgba(255,165,0,.15));
+  box-shadow: 0 8px 22px rgba(225,48,108,.4);
+}
+.nav-social-btn[data-social="mail"]:hover {
+  color: #fff;
+  border-color: rgba(255,126,179,.6);
+  background: rgba(255,126,179,.18);
+  box-shadow: 0 8px 22px rgba(255,126,179,.4);
 }
 
 /* ============================================================
@@ -475,8 +630,10 @@ blockquote::before {
 /* ============================================================
    HOME / HERO SECTION
    Conserva TODAS las imágenes originales
+   ⚠️ Usamos #home.active (no solo #home) porque #home tiene
+   mayor especificidad que .spa-section y rompía el display:none
 ============================================================ */
-#home {
+#home.active {
   min-height: calc(100vh - var(--nav-h) - 5rem);
   display: flex; align-items: center;
 }
@@ -600,11 +757,92 @@ footer {
 footer strong { color: var(--accent); }
 
 /* ============================================================
+   CV DOWNLOAD CARD
+============================================================ */
+.cv-card {
+  max-width: 520px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cv-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(180,138,255,.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 100%, rgba(255,126,179,.12) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.cv-card > * { position: relative; z-index: 1; }
+
+.cv-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: cvFloat 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 8px 20px rgba(180,138,255,.35));
+}
+@keyframes cvFloat {
+  0%,100% { transform: translateY(0)    rotate(-2deg); }
+  50%     { transform: translateY(-6px) rotate(2deg);  }
+}
+
+.cv-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: .35rem;
+  background: linear-gradient(135deg, var(--text) 30%, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cv-meta {
+  color: var(--muted);
+  font-size: .88rem;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+.cv-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  align-items: stretch;
+}
+.cv-actions > * { width: 100%; justify-content: center; }
+
+.cv-download-btn {
+  position: relative;
+  overflow: hidden;
+}
+.cv-download-btn::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  transition: left .6s ease;
+}
+.cv-download-btn:hover::after { left: 100%; }
+
+.cv-hint {
+  display: inline-flex; align-items: center; gap: .35rem;
+  margin-top: 1rem;
+  font-size: .72rem;
+  color: var(--accent-3);
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+/* ============================================================
    RESPONSIVE
 ============================================================ */
 @media (max-width: 1024px) {
   #app { grid-template-columns: 240px 1fr; }
   main { padding: 2rem 2rem; }
+  .nav-socials { gap: .3rem; margin: 0 .5rem 0 auto; }
+  .nav-social-btn { width: 32px; height: 32px; }
 }
 @media (max-width: 768px) {
   #app { grid-template-columns: 1fr; }
@@ -614,6 +852,11 @@ footer strong { color: var(--accent); }
     padding: 1rem;
   }
   .nav-links { display: none; }
+  /* En mobile solo dejamos las 3 redes principales */
+  .nav-socials { gap: .25rem; margin: 0 .4rem 0 auto; }
+  .nav-social-btn { width: 30px; height: 30px; }
+  .nav-social-btn[data-social="twitter"],
+  .nav-social-btn[data-social="instagram"] { display: none; }
   main { padding: 1.5rem 1.25rem; }
   .hero-inner { grid-template-columns: 1fr; }
   .img-left, .img-right { flex-direction: row; justify-content: center; }
@@ -624,4 +867,6 @@ footer strong { color: var(--accent); }
 @media (max-width: 480px) {
   nav { padding: 0 1.25rem; }
   .nav-logo { font-size: 1.1rem; }
+  /* Solo LinkedIn y GitHub en pantallas muy chicas */
+  .nav-social-btn[data-social="mail"] { display: none; }
 }
